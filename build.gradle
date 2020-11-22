@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+group 'org.khrypko'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/khrypko/event-sourcing-framework")
+    }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    implementation 'org.khrypkom:event-sourcing-framework:0.1'
+
+    implementation 'org.springframework.data:spring-data-jpa:2.4.1'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.24.Final'
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.10.0'
+
+    testImplementation(platform('org.junit:junit-bom:5.7.0'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+    testCompile("org.assertj:assertj-core:3.11.1")
+}
